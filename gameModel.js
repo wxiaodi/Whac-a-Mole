@@ -24,8 +24,8 @@ export default class GameModel {
     }
 
     hitMole(id) {
-        const block = this.board[id];
-        if (block.hasMole) {
+        const block = this.board.find(block => block.id === id);
+        if (block && block.hasMole) {
             block.hasMole = false;
             this.score++;
             return true;
@@ -37,3 +37,8 @@ export default class GameModel {
         this.board.forEach(block => block.hasMole = false);
     }
 }
+
+
+
+
+

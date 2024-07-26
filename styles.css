@@ -1,55 +1,68 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
     margin: 0;
-}
-
-.header {
-    position: relative;
-    margin-top: 20px;
-    padding: 20px;
-    border: 2px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    height: 100vh;
+}
+
+.header {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.score-counter {
+    margin: 10px 0;
 }
 
 .timer {
     position: absolute;
     top: 20px;
     right: 20px;
-    border: 2px solid red;
     padding: 10px;
+    border: 2px solid #ccc;
+    background-color: white;
+    box-sizing: border-box;
 }
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(4, 200px);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     justify-content: center;
     margin-top: 20px;
-    border: 2px solid red;
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
     padding: 10px;
 }
 
 .block {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+    width: 100%;
+    padding-top: 100%; /* 保持宽高比为1:1，使其成为正方形 */
+    border-radius: 50%; /* 使其成为圆形 */
     border: 2px solid brown;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
+    background-color: white;
+    overflow: hidden;
 }
 
-.mole {
-    background-color: brown;
-    color: white;
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.block.has-mole {
+    background-image: url('images/mole.png'); /* 使用背景图片 */
+    background-size: contain; /* 图片大小适应块 */
+    background-repeat: no-repeat; /* 防止图片重复 */
+    background-position: center; /* 图片居中 */
 }
+
+
+
+
+
+
+

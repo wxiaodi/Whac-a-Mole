@@ -9,28 +9,38 @@
 <body>
     <div class="header">
         <h1>Welcome to whack-a-mole</h1>
-        <p>Let's Go, your total score is <span id="score">0</span></p>
-        <button id="startGame">Start Game!</button>
-        <div class="timer">
-            <span>Time Left: </span>
-            <span id="timeLeft">30</span>
+        <div class="score-counter">
+            Let's Go, your total score is <span id="score">0</span>
         </div>
+        <button id="startGame">Start Game!</button>
+    </div>
+    <div class="timer">
+        Time Left: <span id="timeLeft">30</span>
     </div>
     <div class="game-board" id="gameBoard">
-        <!-- 12 blocks -->
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
+        <!-- Game blocks will be dynamically generated here -->
+        <div class="block"><div class="block-inner"></div></div>
+        <div class="block"><div class="block-inner"></div></div>
+        <div class="block"><div class="block-inner"></div></div>
+        <div class="block"><div class="block-inner"></div></div>
+        <div class="block"><div class="block-inner"></div></div>
+        <div class="block"><div class="block-inner"></div></div>
+        <div class="block"><div class="block-inner"></div></div>
+        <div class="block"><div class="block-inner"></div></div>
+        <div class="block"><div class="block-inner"></div></div>
+        <div class="block"><div class="block-inner"></div></div>
+        <div class="block"><div class="block-inner"></div></div>
+        <div class="block"><div class="block-inner"></div></div>
     </div>
-    <script src="script.js"></script>
+    <script src="gameModel.js" type="module"></script>
+    <script src="gameView.js" type="module"></script>
+    <script src="gameController.js" type="module"></script>
 </body>
 </html>
+
+
+
+
+
+
+

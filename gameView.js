@@ -1,3 +1,5 @@
+// gameView.js
+
 export default class GameView {
     constructor() {
         this.scoreElement = document.getElementById('score');
@@ -19,19 +21,22 @@ export default class GameView {
             const blockElement = document.createElement('div');
             blockElement.classList.add('block');
             if (block.hasMole) {
-                blockElement.classList.add('mole');
-                blockElement.textContent = 'Mole';
+                blockElement.classList.add('has-mole');
+            } else {
+                blockElement.classList.remove('has-mole');
             }
             blockElement.addEventListener('click', () => this.onBlockClick(block.id));
             this.gameBoard.appendChild(blockElement);
         });
     }
 
-    onBlockClick(id) {
-        // To be implemented by the controller
-    }
-
     setOnBlockClick(callback) {
         this.onBlockClick = callback;
     }
 }
+
+
+
+
+
+
