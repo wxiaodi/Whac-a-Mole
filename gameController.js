@@ -68,7 +68,6 @@ class GameController {
         clearInterval(this.timerInterval);
         this.model.endGameWithSnakes();
         this.updateBoard();
-        // Removed the alert to avoid confusion with a time-out alert
     }
 }
 

@@ -23,13 +23,13 @@ export default class GameModel {
             moleBlock.hasMole = true;
             setTimeout(() => {
                 moleBlock.hasMole = false;
-            }, 2000); // Mole disappears after 2 seconds if not clicked
+            }, 2000);
         }
     }
 
     spawnSnake() {
         const randomIndex = Math.floor(Math.random() * this.board.length);
-        this.board.forEach(block => block.hasSnake = false); // Clear any previous snake
+        this.board.forEach(block => block.hasSnake = false);
         this.board[randomIndex].hasSnake = true;
     }
 
