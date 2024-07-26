@@ -15,7 +15,7 @@ class GameController {
         this.view.renderScore(this.model.score);
         this.view.renderTimeLeft(this.model.timeLeft);
         this.updateBoard();
-
+        
         this.gameInterval = setInterval(() => {
             if (this.countMolesOnBoard() < 3) {
                 this.model.spawnMole();
@@ -28,11 +28,12 @@ class GameController {
             this.updateBoard();
         }, 2000);
 
+
         this.timerInterval = setInterval(() => {
             this.model.timeLeft--;
             this.view.renderTimeLeft(this.model.timeLeft);
             if (this.model.timeLeft <= 0) {
-                this.endGame();
+                this.endGameWithTimeout();
             }
         }, 1000);
     }
@@ -54,26 +55,40 @@ class GameController {
         return this.model.board.filter(block => block.hasMole).length;
     }
 
+
+    endGameWithTimeout() {
+        this.clearAllIntervals();
+        this.model.removeAllMolesAndSnakes();
+        this.updateBoard();
+        alert('Time is Over!');
+    }
+
+
     endGame() {
-        clearInterval(this.gameInterval);
-        clearInterval(this.snakeInterval);
-        clearInterval(this.timerInterval);
+        this.clearAllIntervals();
         this.model.removeAllMolesAndSnakes();
         this.updateBoard();
     }
 
+
     endGameWithSnakes() {
+        this.clearAllIntervals();
+        this.model.endGameWithSnakes();
+        this.updateBoard();
+    }
+
+
+    clearAllIntervals() {
         clearInterval(this.gameInterval);
         clearInterval(this.snakeInterval);
         clearInterval(this.timerInterval);
-        this.model.endGameWithSnakes();
-        this.updateBoard();
     }
 }
 
 const model = new GameModel();
 const view = new GameView();
 const controller = new GameController(model, view);
+
 
 
 
