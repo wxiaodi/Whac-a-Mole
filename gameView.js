@@ -1,5 +1,3 @@
-// gameView.js
-
 export default class GameView {
     constructor() {
         this.scoreElement = document.getElementById('score');
