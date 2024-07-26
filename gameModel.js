@@ -6,7 +6,7 @@ export default class GameModel {
     }
 
     createBoard() {
-        return Array.from({ length: 12 }, (_, id) => ({ id, hasMole: false }));
+        return Array.from({ length: 12 }, (_, id) => ({ id, hasMole: false, hasSnake: false }));
     }
 
     resetGame() {
@@ -16,11 +16,21 @@ export default class GameModel {
     }
 
     spawnMole() {
-        const availableBlocks = this.board.filter(block => !block.hasMole);
+        const availableBlocks = this.board.filter(block => !block.hasMole && !block.hasSnake);
         if (availableBlocks.length > 0) {
             const randomIndex = Math.floor(Math.random() * availableBlocks.length);
-            this.board[availableBlocks[randomIndex].id].hasMole = true;
+            const moleBlock = this.board[availableBlocks[randomIndex].id];
+            moleBlock.hasMole = true;
+            setTimeout(() => {
+                moleBlock.hasMole = false;
+            }, 2000); // Mole disappears after 2 seconds if not clicked
         }
+    }
+
+    spawnSnake() {
+        const randomIndex = Math.floor(Math.random() * this.board.length);
+        this.board.forEach(block => block.hasSnake = false); // Clear any previous snake
+        this.board[randomIndex].hasSnake = true;
     }
 
     hitMole(id) {
@@ -33,10 +43,29 @@ export default class GameModel {
         return false;
     }
 
-    removeAllMoles() {
-        this.board.forEach(block => block.hasMole = false);
+    hitSnake(id) {
+        const block = this.board.find(block => block.id === id);
+        if (block && block.hasSnake) {
+            this.endGameWithSnakes();
+            return true;
+        }
+        return false;
+    }
+
+    endGameWithSnakes() {
+        this.board.forEach(block => block.hasSnake = true);
+    }
+
+    removeAllMolesAndSnakes() {
+        this.board.forEach(block => {
+            block.hasMole = false;
+            block.hasSnake = false;
+        });
     }
 }
+
+
+
 
 
 

@@ -23,6 +23,11 @@ class GameController {
             }
         }, 1000);
 
+        this.snakeInterval = setInterval(() => {
+            this.model.spawnSnake();
+            this.updateBoard();
+        }, 2000);
+
         this.timerInterval = setInterval(() => {
             this.model.timeLeft--;
             this.view.renderTimeLeft(this.model.timeLeft);
@@ -36,6 +41,8 @@ class GameController {
         if (this.model.hitMole(id)) {
             this.view.renderScore(this.model.score);
             this.updateBoard();
+        } else if (this.model.hitSnake(id)) {
+            this.endGameWithSnakes();
         }
     }
 
@@ -49,16 +56,29 @@ class GameController {
 
     endGame() {
         clearInterval(this.gameInterval);
+        clearInterval(this.snakeInterval);
         clearInterval(this.timerInterval);
-        alert('Time is Over!');
-        this.model.removeAllMoles();
+        this.model.removeAllMolesAndSnakes();
         this.updateBoard();
+    }
+
+    endGameWithSnakes() {
+        clearInterval(this.gameInterval);
+        clearInterval(this.snakeInterval);
+        clearInterval(this.timerInterval);
+        this.model.endGameWithSnakes();
+        this.updateBoard();
+        // Removed the alert to avoid confusion with a time-out alert
     }
 }
 
 const model = new GameModel();
 const view = new GameView();
 const controller = new GameController(model, view);
+
+
+
+
 
 
 

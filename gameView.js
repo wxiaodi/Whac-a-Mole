@@ -23,6 +23,11 @@ export default class GameView {
             } else {
                 blockElement.classList.remove('has-mole');
             }
+            if (block.hasSnake) {
+                blockElement.classList.add('has-snake');
+            } else {
+                blockElement.classList.remove('has-snake');
+            }
             blockElement.addEventListener('click', () => this.onBlockClick(block.id));
             this.gameBoard.appendChild(blockElement);
         });
@@ -32,6 +37,9 @@ export default class GameView {
         this.onBlockClick = callback;
     }
 }
+
+
+
 
 
 

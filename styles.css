@@ -62,7 +62,14 @@ body {
 }
 
 .block.has-mole {
-    background-image: url('images/mole.png');
+    background-image: url('images/mole.png'); /* Replace with your mole image */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.block.has-snake {
+    background-image: url('images/snake.jpg'); /* Replace with your snake image */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
